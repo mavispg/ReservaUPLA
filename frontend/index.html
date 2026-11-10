@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="ReservaUPLA: gestión de reservas de ambientes de la Universidad Peruana Los Andes."
+    />
+    <script>
+      (function() {
+        try {
+          var tema = localStorage.getItem('reservaupla.tema');
+          var esOscuro = tema === 'dark' || (tema === null && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          if (esOscuro) {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <title>ReservaUPLA</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

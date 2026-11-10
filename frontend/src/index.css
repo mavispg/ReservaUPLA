@@ -1,0 +1,135 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html {
+    @apply h-full scroll-smooth;
+  }
+
+  html.texto-ampliado {
+    font-size: 112.5%;
+  }
+
+  html.alto-contraste:not(.dark) body {
+    background-color: #ffffff;
+    color: #0f172a;
+  }
+
+  html.alto-contraste:not(.dark) :is(
+    .text-slate-400,
+    .text-slate-500,
+    .text-slate-600
+  ) {
+    color: #334155 !important;
+  }
+
+  html.alto-contraste:not(.dark) :is(
+    .border-slate-100,
+    .border-slate-200,
+    .border-slate-300
+  ) {
+    border-color: #64748b !important;
+  }
+
+  html.dark.alto-contraste body {
+    background-color: #000000;
+    color: #ffffff;
+  }
+
+  html.dark.alto-contraste :is(
+    .text-slate-400,
+    .text-slate-500,
+    .text-slate-600,
+    .text-slate-700
+  ) {
+    color: #f1f5f9 !important;
+  }
+
+  html.dark.alto-contraste :is(
+    .border-slate-700,
+    .border-slate-800,
+    .border-slate-900
+  ) {
+    border-color: #a3a3a3 !important;
+  }
+
+  html.dark.alto-contraste :is(
+    .bg-slate-800,
+    .bg-slate-800\/70,
+    .bg-slate-800\/80,
+    .bg-slate-900,
+    .bg-slate-900\/70,
+    .bg-slate-900\/80,
+    .bg-slate-950
+  ) {
+    background-color: #050505 !important;
+  }
+
+  /* Ocultar el boton de revelar contrasena nativo del navegador (Edge/Chrome) para evitar cruce */
+  input::-ms-reveal,
+  input::-ms-clear {
+    display: none;
+  }
+
+  body {
+    @apply m-0 min-h-full bg-slate-50 font-sans text-base leading-relaxed text-slate-800 antialiased transition-colors duration-200 dark:bg-slate-950 dark:text-slate-100;
+  }
+
+  #root {
+    @apply min-h-screen;
+  }
+
+  /* Foco visible para navegación con teclado (accesibilidad WCAG). */
+  :focus-visible {
+    @apply outline-none ring-2 ring-brand-500 ring-offset-2 ring-offset-white dark:ring-offset-slate-900;
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply absolute left-4 top-4 z-50 -translate-y-24 rounded-lg bg-brand-700 px-4 py-2 text-sm font-semibold text-white shadow-lg transition focus:translate-y-0;
+  }
+
+  .card {
+    @apply rounded-xl border border-slate-200 bg-white shadow-sm transition-colors duration-200 dark:border-slate-800 dark:bg-slate-900;
+  }
+
+  .page-title {
+    @apply text-2xl font-bold leading-tight tracking-tight text-slate-900 dark:text-white sm:text-3xl;
+  }
+
+  .page-subtitle {
+    @apply mt-1 max-w-2xl text-sm leading-relaxed text-slate-600 dark:text-slate-400;
+  }
+
+  .module-transition {
+    animation: module-enter 180ms ease-out both;
+  }
+}
+
+@keyframes module-enter {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .module-transition {
+    animation: none;
+  }
+}
